@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sophie Bluel - Architecte d'intérieur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <meta name="description" content="" />
+    <link rel="stylesheet" href="./assets/style.css" />
+    <script src="filtre.js" defer></script>
+  </head>
+  <body>
+    <header>
+      <h1>
+        <a class="page-principal" href="./index.html">
+          Sophie Bluel <span>Architecte d'inteérieur</span>
+        </a>
+      </h1>
+      <nav>
+        <ul id="navList">
+          <li>projets</li>
+          <li>contact</li>
+          <li>
+            <a class="login-actif" href="./login.html" target="loginFrame"
+              >login</a
+            >
+          </li>
+          <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
+        </ul>
+      </nav>
+    </header>
+    <div id="loginForm">
+      <h2>Log in</h2>
+      <form class="formualire">
+        <div class="mail">
+          <label for="E-mail">E-mail</label>
+          <input type="text" id="E-mail" name="E-mail" required />
+        </div>
+        <div class="motdepasse">
+          <label for="motDePasse">Mot de passe</label>
+          <input type="password" id="motDePasse" name="motDePasse" required />
+        </div>
+        <div class="connexion">
+          <button class="click-button" type="button" onclick="validateForm()">
+            Se connecter
+          </button>
+        </div>
+        <div id="messageErreur" style="color: red"></div>
+        <div>
+          <a class="mdp-oublier" href="mot_de_passe_oublie.html"
+            >Mot de passe oublié</a
+          >
+        </div>
+      </form>
+    </div>
+
+    <footer>
+      <nav>
+        <ul>
+          <li>Mentions Légales</li>
+        </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
