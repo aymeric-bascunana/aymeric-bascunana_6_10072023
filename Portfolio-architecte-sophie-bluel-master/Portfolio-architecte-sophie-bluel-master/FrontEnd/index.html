@@ -12,24 +12,25 @@
     />
     <meta name="description" content="" />
     <link rel="stylesheet" href="./assets/style.css" />
-    <script src="filtre.js" defer></script>
+
+    <script src="js/filtre.js" defer></script>
+    <script src="js/index.js" defer></script>
   </head>
   <body>
     <header>
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
-        <ul  id="navList">
+        <ul id="navList">
           <li>projets</li>
           <li>contact</li>
-          <li><a class="login" href="./login.html" target="loginFrame">login</a></li>
+          <li>
+            <a class="login" href="./login.html" target="loginFrame">login</a>
+          </li>
           <li><img src="./assets/icons/instagram.png" alt="Instagram" /></li>
         </ul>
       </nav>
-     
     </header>
-    
-    
-    
+
     <main>
       <section id="introduction">
         <figure>
@@ -57,180 +58,95 @@
       <section id="portfolio">
         <h2>Mes Projets</h2>
         <button id="modifyBtn" onclick="openImageModal()">Modifier</button>
-    
-        <!-- Fenêtre modale pour ajouter/retirer des images -->
-        <div id="imageModal" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeImageModal()">&times;</span>
-            <h2 class="nom-galerie">Galerie photo</h2>
-            <label for="imageURL">URL de l'image :</label>
-            <input type="text" id="imageURL">
-            <button id="addImageBtn" onclick="addImage()">Ajouter une photo</button>
-            <button id="removeImageBtn" onclick="removeImage()">Supprimer la galerie</button>
-          </div>
-        </div>
+
         <!-- La partie des filtres -->
-        <button onclick="filterCategory('all')">Tous</button>
+        <!-- <button onclick="filterCategory('all')">Tous</button>
         <button onclick="filterCategory('Objets')">Objets</button>
         <button onclick="filterCategory('Appartements')">Appartements</button>
-        <button onclick="filterCategory('Hôtels & Restaurants')">Hôtels & Restaurants</button>
-    
-
+        <button onclick="filterCategory('Hôtels & Restaurants')">Hôtels & Restaurants</button> -->
+        <div class="categories">
+          <button>Tous</button>
+          <button>Objets</button>
+          <button>Appartements</button>
+          <button>Hôtels & Restaurants</button>
+        </div>
         <div class="gallery">
-          <ul id="list">
-            <li data-category="Objets">
-              <figure>
-                <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
-                <figcaption>Abajour Tahina</figcaption>
-                
-              </figure>
-            </li>
-            <li data-category="Appartements">
-              <figure>
-              <img
+          <!-- <figure>
+            <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina" />
+            <figcaption>Abajour Tahina</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/appartement-paris-v.png"
               alt="Appartement Paris V"
-              />
-              <figcaption>Appartement Paris V</figcaption>
-              </figure>
-              </li>
-              <li data-category="Hôtels & Restaurants">
-              <figure>
-              <img
+            />
+            <figcaption>Appartement Paris V</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/restaurant-sushisen-londres.png"
               alt="Restaurant Sushisen - Londres"
-              />
-              <figcaption>Restaurant Sushisen - Londres</figcaption>
-              </figure>
-              </li>
-              <li data-category=">Hôtels & Restaurants">
-              <figure>
-              <img
+            />
+            <figcaption>Restaurant Sushisen - Londres</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/la-balisiere.png"
               alt="Villa “La Balisiere” - Port Louis"
-              />
-              <figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-              </figure>
-              </li>
-              <li data-category="Objets">
-              <figure>
-              <img
+            />
+            <figcaption>Villa “La Balisiere” - Port Louis</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/structures-thermopolis.png"
               alt="Structures Thermopolis"
-              />
-              <figcaption>Structures Thermopolis</figcaption>
-              </figure>
-              </li>
-              <li data-category="Appartements">
-              <figure>
-              <img
+            />
+            <figcaption>Structures Thermopolis</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/appartement-paris-x.png"
               alt="Appartement Paris X"
-              />
-              <figcaption>Appartement Paris X</figcaption>
-              </figure>
-              </li>
-              
-              <li data-category="Hôtels & Restaurants">
-              <figure>
-              <img
+            />
+            <figcaption>Appartement Paris X</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/le-coteau-cassis.png"
               alt="Pavillon “Le coteau” - Cassis"
-              />
-              <figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-              </figure>
-              </li>
-              <li data-category="Hôtels & Restaurants">
-              <figure>
-              <img
+            />
+            <figcaption>Pavillon “Le coteau” - Cassis</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/villa-ferneze.png"
               alt="Villa Ferneze - Isola d’Elba"
-              />
-              <figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-              </figure>
-              </li>
-              <li data-category="Appartements">
-              <figure>
-              <img
+            />
+            <figcaption>Villa Ferneze - Isola d’Elba</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/appartement-paris-xviii.png"
               alt="Appartement Paris XVIII"
-              />
-              <figcaption>Appartement Paris XVIII</figcaption>
-              </figure>
-              </li>
-              <li data-category="Hôtel & Restaurants">
-              <figure>
-              <img
+            />
+            <figcaption>Appartement Paris XVIII</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/bar-lullaby-paris.png"
               alt="Bar “Lullaby” - Paris"
-              />
-              <figcaption>Bar “Lullaby” - Paris</figcaption>
-              </figure>
-              </li>
-              
-              <li data-category="Hôtels & Restaurants">
-              <figure>
-              <img
+            />
+            <figcaption>Bar “Lullaby” - Paris</figcaption>
+          </figure>
+          <figure>
+            <img
               src="assets/images/hotel-first-arte-new-delhi.png"
               alt="Hotel First Arte - New Delhi"
-              />
-              <figcaption>Hotel First Arte - New Delhi</figcaption>
-              </figure>
-              </li>
-              
-          </ul>
+            />
+            <figcaption>Hotel First Arte - New Delhi</figcaption>
+          </figure> -->
         </div>
-    
       </section>
-      
-      <!-- la parti des images -->
-      <!--  <div class="gallery"> -->
-        <!-- <figure> 
-          <img src="assets/images/abajour-tahina.png" alt="Abajour Tahina">
-          <figcaption>Abajour Tahina</figcaption>
-        </figure>
-        <figure>
-          <img src="assets/images/appartement-paris-v.png" alt="Appartement Paris V">
-          <figcaption>Appartement Paris V</figcaption>
-        </figure>
-        <figure>
-              <img src="assets/images/restaurant-sushisen-londres.png" alt="Restaurant Sushisen - Londres">
-              <figcaption>Restaurant Sushisen - Londres</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/la-balisiere.png" alt="Villa “La Balisiere” - Port Louis">
-				<figcaption>Villa “La Balisiere” - Port Louis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/structures-thermopolis.png" alt="Structures Thermopolis">
-				<figcaption>Structures Thermopolis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-x.png" alt="Appartement Paris X">
-				<figcaption>Appartement Paris X</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/le-coteau-cassis.png" alt="Pavillon “Le coteau” - Cassis">
-				<figcaption>Pavillon “Le coteau” - Cassis</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/villa-ferneze.png" alt="Villa Ferneze - Isola d’Elba">
-				<figcaption>Villa Ferneze - Isola d’Elba</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/appartement-paris-xviii.png" alt="Appartement Paris XVIII">
-				<figcaption>Appartement Paris XVIII</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/bar-lullaby-paris.png" alt="Bar “Lullaby” - Paris">
-				<figcaption>Bar “Lullaby” - Paris</figcaption>
-			</figure>
-			<figure>
-				<img src="assets/images/hotel-first-arte-new-delhi.png" alt="Hotel First Arte - New Delhi">
-				<figcaption>Hotel First Arte - New Delhi</figcaption>
-			</figure>
-		-->
-        </div>
       <section id="contact">
         <h2>Contact</h2>
         <p>Vous avez un projet ? Discutons-en !</p>
@@ -253,5 +169,19 @@
         </ul>
       </nav>
     </footer>
+
+    <!-- Fenêtre modale pour ajouter/retirer des images -->
+    <div id="imageModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeImageModal()">&times;</span>
+        <h2 class="nom-galerie">Galerie photo</h2>
+        <label for="imageURL">URL de l'image :</label>
+        <input type="text" id="imageURL" />
+        <button id="addImageBtn" onclick="addImage()">Ajouter une photo</button>
+        <button id="removeImageBtn" onclick="removeImage()">
+          Supprimer la galerie
+        </button>
+      </div>
+    </div>
   </body>
 </html>
