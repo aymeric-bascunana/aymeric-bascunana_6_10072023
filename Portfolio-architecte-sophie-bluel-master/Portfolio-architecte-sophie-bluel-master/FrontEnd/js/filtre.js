@@ -107,6 +107,30 @@ const images = [
   "./assets/images/hotel-first-arte-new-delhi.png",
 ];
 
+//const imageNames = [
+//"Abajour Tahina",
+
+//"Appartement Paris V",
+
+//"Restaurant Sushisen Londres",
+
+//"La Balisiere",
+
+//"Structures Thermopolis",
+
+//"Appartement Paris X",
+
+//"Le Coteau Cassis",
+
+//"Villa Ferneze",
+
+//"Appartement Paris XVIII",
+
+//"Bar Lullaby Paris",
+
+//"Hotel First Arte New Delhi",
+//];
+
 // Fonction pour ajouter des images à la galerie
 function ajouterImagesALaGalerie() {
   // Obtient l'élément parent dans lequel nous voulons ajouter les images (la galerie)
@@ -130,3 +154,12 @@ function ajouterImagesALaGalerie() {
 
 // Appel de la fonction pour ajouter les images à la galerie lors du chargement de la page
 ajouterImagesALaGalerie();
+
+const containerDots = document.querySelector(".gallery");
+
+for (let index = 0; index < imagesNbr; index++) {
+  let images = document.createElement("img");
+  dot.className = "images";
+  console.log(dot);
+  containerDots.appendChild(img);
+}
