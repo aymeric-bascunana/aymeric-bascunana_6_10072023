@@ -8,21 +8,29 @@ fetch("http://localhost:5678/api/works")
       const ajouteImage = array[index];
     }
 
-    function ajouteImage() {
-      
-      var galerie = document.querySelector(".gallery");
+    export function ajoutListenersAvis() {
+      const imageElements = document.querySelectorAll(
+        "http://localhost:5678/api/works"
+      );
 
-      images.array.forEach(function fetch("http://localhost:5678/api/works") {
-        var nouvelleImage = document.createElement("figure");
-        var nouvelleImage = document.createElement("img");
-        nouvelleImage.src = "http://localhost:5678/api/works";
-      } => {
-
-        
-      });
-       nouvelleImage.classList.add("image");
-       galerie.appendChild(nouvelleImage);
+      for (let i = 0; i < imageElements.length; i++) {
+        imageElements[i].addEventListener("click", async function (event) {
+          /* ... */
+        });
+      }
     }
+
+    function genererPieces(pieces) {
+      for (let i = 0; i < pieces.length; i++) {
+        //...
+      }
+      // Ajout de la fonction ajoutListenersAvis
+      ajoutListenersAvis();
+    }
+
+    const id = event.target.dataset.id;
+    fetch(`http://localhost:5678/api/works`);
+
     // <figure>
     //   <img
     //     src="assets/images/appartement-paris-v.png"
@@ -32,9 +40,22 @@ fetch("http://localhost:5678/api/works")
     // </figure>
   });
 
+//function ajouteImage() {
 
+//var galerie = document.querySelector(".gallery");
 
-  //Créer les catégoires ?
+//images.array.forEach(function fetch("http://localhost:5678/api/works") {
+// var nouvelleImage = document.createElement("figure");
+//var nouvelleImage = document.createElement("img");
+//nouvelleImage.src = "http://localhost:5678/api/works";
+//nouvelleImage.classList.add("image");
+//galerie.appendChild(nouvelleImage);
+// } => {
+
+// });
+//}
+
+//Créer les catégoires ?
 function ajouterImagesALaGalerie() {
   // Obtient l'élément parent dans lequel nous voulons ajouter les images (la galerie)
   var galerie = document.querySelector(".gallery");
