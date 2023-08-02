@@ -4,74 +4,27 @@ fetch("http://localhost:5678/api/works")
   .then((works) => {
     console.log(works);
 
-    for (let index = 0; index < image.length; index++) {
-      const ajouteImage = array[index];
-    }
+    // Récupérez la div "gallery" dans laquelle vous afficherez les images
+    const galleryDiv = document.getElementById("gallery");
 
-    export function ajoutListenersAvis() {
-      const imageElements = document.querySelectorAll(
-        "http://localhost:5678/api/works"
-      );
+    // Itérez sur chaque objet "work" et ajoutez l'image à la div "gallery"
+    works.forEach((work) => {
+      const image = document.createElement("img");
+      image.src = work.imageURL;
+      image.alt = work.title;
 
-      for (let i = 0; i < imageElements.length; i++) {
-        imageElements[i].addEventListener("click", async function (event) {
-          /* ... */
-        });
-      }
-    }
-
-    function genererPieces(pieces) {
-      for (let i = 0; i < pieces.length; i++) {
-        //...
-      }
-      // Ajout de la fonction ajoutListenersAvis
-      ajoutListenersAvis();
-    }
-
-    const id = event.target.dataset.id;
-    fetch(`http://localhost:5678/api/works`);
-
-    // <figure>
-    //   <img
-    //     src="assets/images/appartement-paris-v.png"
-    //     alt="Appartement Paris V"
-    //   />
-    //   <figcaption>Appartement Paris V</figcaption>
-    // </figure>
+      // Ajoutez l'image à la div "gallery"
+      galleryDiv.appendChild(image);
+    });
+  })
+  .catch((error) => {
+    console.error("Erreur lors de la récupération des données :", error);
   });
 
-//function ajouteImage() {
-
-//var galerie = document.querySelector(".gallery");
-
-//images.array.forEach(function fetch("http://localhost:5678/api/works") {
-// var nouvelleImage = document.createElement("figure");
-//var nouvelleImage = document.createElement("img");
-//nouvelleImage.src = "http://localhost:5678/api/works";
-//nouvelleImage.classList.add("image");
-//galerie.appendChild(nouvelleImage);
-// } => {
-
-// });
-//}
-
-//Créer les catégoires ?
-function ajouterImagesALaGalerie() {
-  // Obtient l'élément parent dans lequel nous voulons ajouter les images (la galerie)
-  var galerie = document.querySelector(".gallery");
-
-  // Parcours le tableau d'URL d'images
-  images.forEach(function (urlImage) {
-    // Crée un nouvel élément <img>
-    var nouvelleImage = document.createElement("img");
-
-    // Définit l'attribut "src" de l'image pour l'URL spécifiée
-    nouvelleImage.src = urlImage;
-
-    // Ajoute une classe (facultatif, pour le style)
-    nouvelleImage.classList.add("image");
-
-    // Ajoute l'image à l'élément parent (la galerie)
-    galerie.appendChild(nouvelleImage);
-  });
-}
+// <figure>
+//   <img
+//     src="assets/images/appartement-paris-v.png"
+//     alt="Appartement Paris V"
+//   />
+//   <figcaption>Appartement Paris V</figcaption>
+// </figure>
