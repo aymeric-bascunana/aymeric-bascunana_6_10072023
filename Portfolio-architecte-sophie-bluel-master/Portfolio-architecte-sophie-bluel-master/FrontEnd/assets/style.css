@@ -425,8 +425,3 @@ button:hover {
   background-color: white;
   color: black;
 }
-
-.gallery,
-img {
-  margin: 20px;
-}
