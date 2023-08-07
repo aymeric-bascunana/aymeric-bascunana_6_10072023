@@ -17,8 +17,8 @@ function createWorks(works) {
     const image = document.createElement("img");
     image.src = work.imageUrl;
     image.alt = work.title;
-    figcaption.textContent = work.title;
     const figcaption = document.createElement("figcaption");
+    figcaption.textContent = work.title;
     // console.log(image);
 
     // Ajoutez appendchild à leurs div
@@ -37,3 +37,12 @@ function createWorks(works) {
 //   />
 //   <figcaption>Appartement Paris V</figcaption>
 // </figure>
+
+fetch("http://localhost:5678/api/categories")
+  .then((data) => data.json())
+  .then((categories) => {
+    console.log(categories);
+    filtres(categories);
+  });
+
+function fitres(categories) {}
