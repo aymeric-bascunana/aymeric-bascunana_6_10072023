@@ -42,7 +42,21 @@ fetch("http://localhost:5678/api/categories")
   .then((data) => data.json())
   .then((categories) => {
     console.log(categories);
-    filtres(categories);
+    createCategoryButtons(categories);
   });
 
-function fitres(categories) {}
+function createCategoryButtons(categories) {
+  const categoryButtonsContainer = document.getElementById("categories");
+
+  categories.forEach((category) => {
+    const button = document.createElement("button");
+    button.textContent = category.name; // Remplacez "name" par la propriété appropriée de votre objet catégorie
+    button.addEventListener("click", () => {
+      // Ajoutez le code que vous souhaitez exécuter lorsqu'un bouton est cliqué
+      // Par exemple, filtrer les éléments en fonction de la catégorie sélectionnée
+      // Vous pouvez également ajouter / supprimer la classe "active_filter" pour styliser le bouton actif
+    });
+
+    categoryButtonsContainer.appendChild(button);
+  });
+}
