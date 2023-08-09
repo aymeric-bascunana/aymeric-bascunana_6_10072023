@@ -52,11 +52,19 @@ function createCategoryButtons(categories) {
     const button = document.createElement("button");
     button.textContent = category.name; // Remplacez "name" par la propriété appropriée de votre objet catégorie
     button.addEventListener("click", () => {
-      // Ajoutez le code que vous souhaitez exécuter lorsqu'un bouton est cliqué
-      // Par exemple, filtrer les éléments en fonction de la catégorie sélectionnée
-      // Vous pouvez également ajouter / supprimer la classe "active_filter" pour styliser le bouton actif
+      const activeButton = document.querySelector(".active_filter");
+      if (activeButton) {
+        activeButton.classList.remove("active_filter");
+      }
+      button.classList.add("active_filter");
+      afficherCategories(category.name);
     });
 
     categoryButtonsContainer.appendChild(button);
   });
+}
+
+function afficherCategories(categoryName) {
+  const galleryDiv = document.getElementById("gallery");
+  galleryDiv.innerHTML = "";
 }
