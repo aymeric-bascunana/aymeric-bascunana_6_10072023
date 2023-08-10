@@ -4,11 +4,15 @@ fetch("http://localhost:5678/api/works")
   .then((works) => {
     console.log(works);
     createWorks(works);
+    initCategories(works);
   });
 
 function createWorks(works) {
   // Récupérez la div "gallery" dans laquelle vous afficherez les images
   const galleryDiv = document.getElementById("gallery");
+  galleryDiv.innerHTML = "";
+
+  console.log("creatWorks");
 
   // Itérez sur chaque objet "work" et ajoutez l'image à la div "gallery"
   works.forEach((work) => {
@@ -38,33 +42,39 @@ function createWorks(works) {
 //   <figcaption>Appartement Paris V</figcaption>
 // </figure>
 
-fetch("http://localhost:5678/api/categories")
-  .then((data) => data.json())
-  .then((categories) => {
-    console.log(categories);
-    createCategoryButtons(categories);
-  });
-
-function createCategoryButtons(categories) {
-  const categoryButtonsContainer = document.getElementById("categories");
-
-  categories.forEach((category) => {
-    const button = document.createElement("button");
-    button.textContent = category.name; // Remplacez "name" par la propriété appropriée de votre objet catégorie
-    button.addEventListener("click", () => {
-      const activeButton = document.querySelector(".active_filter");
-      if (activeButton) {
-        activeButton.classList.remove("active_filter");
-      }
-      button.classList.add("active_filter");
-      afficherCategories(category.name);
+function initCategories(works) {
+  fetch("http://localhost:5678/api/categories")
+    .then((data) => data.json())
+    .then((categories) => {
+      console.log(categories);
+      createCategoryButtons(categories);
     });
 
-    categoryButtonsContainer.appendChild(button);
-  });
-}
+  function createCategoryButtons(categories) {
+    const categoryButtonsContainer = document.getElementById("categories");
 
-function afficherCategories(categoryName) {
-  const galleryDiv = document.getElementById("gallery");
-  galleryDiv.innerHTML = "";
+    categories.forEach((category) => {
+      const button = document.createElement("button");
+      button.textContent = category.name;
+      button.addEventListener("click", () => {
+        const activeButton = document.querySelector(".active_filter");
+        if (activeButton) {
+          activeButton.classList.remove("active_filter");
+        }
+        button.classList.add("active_filter");
+
+        filterWorks(category.name);
+      });
+
+      categoryButtonsContainer.appendChild(button);
+    });
+  }
+
+  function filterWorks(categoryName) {
+    console.log(works, categoryName);
+    const newWorks = works.filter((work) => work.category === categoryName);
+    createWorks(newWorks);
+  }
+
+  //Gestion du bouton Tous
 }

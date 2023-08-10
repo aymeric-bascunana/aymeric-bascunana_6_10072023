@@ -276,7 +276,8 @@ button {
   left: 275px;
 }
 
-button:hover {
+button:hover,
+.active_filter {
   background-color: #1d6154;
   color: white;
 }
