@@ -72,9 +72,20 @@ function initCategories(works) {
 
   function filterWorks(categoryName) {
     console.log(works, categoryName);
-    const newWorks = works.filter((work) => work.category === categoryName);
-    createWorks(newWorks);
+    const filterWorks = works.filter(
+      (work) => work.category.name === categoryName
+    );
+    createWorks(filterWorks);
   }
 
-  //Gestion du bouton Tous
+  const allButton = document.getElementById("allButton");
+  allButton.addEventListener("click", () => {
+    const activeButton = document.querySelector(".active_filter");
+    if (activeButton) {
+      activeButton.classList.remove("active_filter");
+    }
+    allButton.classList.add("active_filter");
+
+    createWorks(works);
+  });
 }
