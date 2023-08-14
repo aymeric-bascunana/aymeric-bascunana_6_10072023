@@ -328,7 +328,7 @@ button:hover,
 
 #motDePasse,
 #E-mail {
-  width: 260px;
+  width: 100%;
   height: 35px;
   border: outset 0px white;
   box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.2);
@@ -345,14 +345,15 @@ button:hover,
   left: 50px;
 }
 
+.connexion {
+  margin-left: 75px;
+}
 .formulaire {
   margin: 30px;
 }
 
 .mdp-oublier {
-  position: relative;
-  left: 50px;
-  top: 20px;
+  margin: 0px 0px 0px 125px;
   color: black;
 }
 
@@ -429,4 +430,18 @@ button:hover,
 
 .gallery {
   margin-top: 20px;
+}
+
+.projet {
+  text-decoration: none;
+  color: black;
+}
+
+.projet:hover {
+  color: #b1663c;
+}
+
+#messageErreur {
+  color: red;
+  margin: 20px 0px 20px 0px;
 }
