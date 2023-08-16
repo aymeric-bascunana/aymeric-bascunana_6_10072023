@@ -34,14 +34,6 @@ function createWorks(works) {
   });
 }
 
-// <figure>
-//   <img
-//     src="assets/images/appartement-paris-v.png"
-//     alt="Appartement Paris V"
-//   />
-//   <figcaption>Appartement Paris V</figcaption>
-// </figure>
-
 function initCategories(works) {
   fetch("http://localhost:5678/api/categories")
     .then((data) => data.json())
@@ -89,3 +81,55 @@ function initCategories(works) {
     createWorks(works);
   });
 }
+
+// Fonction pour créer et afficher le modal
+function openImageModal() {
+  const modal = document.createElement("div");
+  modal.classList.add("modal");
+
+  const modalContent = document.createElement("div");
+  modalContent.classList.add("modal-content");
+
+  const closeBtn = document.createElement("span");
+  closeBtn.classList.add("close");
+  closeBtn.textContent = "×";
+  closeBtn.addEventListener("click", closeModal);
+
+  const modalTitle = document.createElement("h2");
+  modalTitle.classList.add("titre-galerie");
+  modalTitle.textContent = "Galerie photo";
+
+  const imageForm = document.createElement("form");
+  imageForm.id = "imageForm";
+
+  const updateButton = document.createElement("button");
+  updateButton.classList.add("addbutton");
+  updateButton.type = "button";
+  updateButton.textContent = "Ajouter une photo";
+  updateButton.addEventListener("click", updateImage);
+
+  imageForm.appendChild(updateButton);
+
+  modalContent.appendChild(closeBtn);
+  modalContent.appendChild(modalTitle);
+  modalContent.appendChild(imageForm);
+
+  modal.appendChild(modalContent);
+
+  document.body.appendChild(modal);
+}
+
+// Fonction pour fermer le modal
+function closeModal() {
+  const modal = document.querySelector(".modal");
+  document.body.removeChild(modal);
+}
+
+// Fonction pour mettre à jour l'image
+function updateImage() {
+  const imageUrl = document.getElementById("imageUrl").value;
+  closeModal();
+}
+
+const modifyBtn = document.getElementById("modifyBtn");
+modifyBtn.addEventListener("click", openImageModal);

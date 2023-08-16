@@ -57,18 +57,10 @@
       </section>
       <section id="portfolio">
         <h2>Mes Projets</h2>
-        <button id="modifyBtn" onclick="openImageModal()">Modifier</button>
+        <button id="modifyBtn" class="modifier">Modifier</button>
 
-        <!-- La partie des filtres -->
-        <!-- <button onclick="filterCategory('all')">Tous</button>
-        <button onclick="filterCategory('Objets')">Objets</button>
-        <button onclick="filterCategory('Appartements')">Appartements</button>
-        <button onclick="filterCategory('Hôtels & Restaurants')">Hôtels & Restaurants</button> -->
         <div id="categories" class="categories">
           <button class="active_filter" id="allButton">Tous</button>
-          <!-- <button>Objets</button>
-          <button>Appartements</button>
-          <button>Hôtels & Restaurants</button> -->
         </div>
         <div class="gallery" id="gallery">
           <!-- <figure>
@@ -169,19 +161,5 @@
         </ul>
       </nav>
     </footer>
-
-    <!-- Fenêtre modale pour ajouter/retirer des images -->
-    <div id="imageModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeImageModal()">&times;</span>
-        <h2 class="nom-galerie">Galerie photo</h2>
-        <label for="imageURL">URL de l'image :</label>
-        <input type="text" id="imageURL" />
-        <button id="addImageBtn" onclick="addImage()">Ajouter une photo</button>
-        <button id="removeImageBtn" onclick="removeImage()">
-          Supprimer la galerie
-        </button>
-      </div>
-    </div>
   </body>
 </html>
