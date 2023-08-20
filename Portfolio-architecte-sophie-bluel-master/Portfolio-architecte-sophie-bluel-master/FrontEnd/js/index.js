@@ -49,12 +49,12 @@ function initCategories(works) {
       const button = document.createElement("button");
       button.textContent = category.name;
       button.addEventListener("click", () => {
-        const activeButton = document.querySelector(".active_filter");
-        if (activeButton) {
-          activeButton.classList.remove("active_filter");
-        }
-        button.classList.add("active_filter");
-
+        // const activeButton = document.querySelector(".active_filter");
+        // if (activeButton) {
+        //   activeButton.classList.remove("active_filter");
+        // }
+        // button.classList.add("active_filter");
+        changeClassActive(button);
         filterWorks(category.name);
       });
 
@@ -70,13 +70,22 @@ function initCategories(works) {
     createWorks(filterWorks);
   }
 
-  const allButton = document.getElementById("allButton");
-  allButton.addEventListener("click", () => {
+  function changeClassActive(btn) {
     const activeButton = document.querySelector(".active_filter");
     if (activeButton) {
       activeButton.classList.remove("active_filter");
     }
-    allButton.classList.add("active_filter");
+    btn.classList.add("active_filter");
+  }
+
+  const allButton = document.getElementById("allButton");
+  allButton.addEventListener("click", () => {
+    changeClassActive(allButton);
+    // const activeButton = document.querySelector(".active_filter");
+    // if (activeButton) {
+    //   activeButton.classList.remove("active_filter");
+    // }
+    // allButton.classList.add("active_filter");
 
     createWorks(works);
   });

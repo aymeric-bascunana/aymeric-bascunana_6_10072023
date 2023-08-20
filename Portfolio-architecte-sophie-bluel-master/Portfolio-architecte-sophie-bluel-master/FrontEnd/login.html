@@ -36,19 +36,20 @@
     </header>
     <div id="loginForm">
       <h2>Log in</h2>
-      <form class="formulaire">
+      <form id="formulaire" class="formulaire">
         <div class="mail">
           <label for="E-mail">E-mail</label>
-          <input type="text" id="E-mail" name="E-mail" required />
+          <input type="email" id="E-mail" name="E-mail" required />
         </div>
         <div class="motdepasse">
           <label for="motDePasse">Mot de passe</label>
           <input type="password" id="motDePasse" name="motDePasse" required />
         </div>
         <div class="connexion">
-          <button class="click-button" type="button" onclick="validateForm()">
+          <!-- <button class="click-button" type="button" onclick="validateForm()">
             Se connecter
-          </button>
+          </button> -->
+          <input class="click-button" type="submit" value="Se connecter" />
         </div>
         <div id="messageErreur" style="color: red"></div>
         <div>
