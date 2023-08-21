@@ -32,20 +32,16 @@ function validateForm(e) {
       console.log(data);
       // createLogin(data);
       //Enregirestre le token dans le localStorage*
-      // Supposons que votre token soit une chaîne de caractères
-      var monToken = "votre_token_ici";
 
-      // Enregistrez le token dans le stockage local
-      localStorage.setItem("monToken", monToken);
-
-      // Vous pouvez également vérifier si le token a été correctement enregistré
       if (data.token) {
         localStorage.setItem("monToken", data.token);
         console.log("Token enregistré avec succès dans le localStorage");
+        //Redirection index.html
+
+        window.location.href = "index.html";
       } else {
         console.log("Token manquant dans la réponse");
       }
-      //Redirection index.html
     })
     .catch((error) => {
       console.error("Erreur:", error);
