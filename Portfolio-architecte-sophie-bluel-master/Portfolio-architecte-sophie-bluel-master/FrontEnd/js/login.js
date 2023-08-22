@@ -34,7 +34,7 @@ function validateForm(e) {
       //Enregirestre le token dans le localStorage*
 
       if (data.token) {
-        localStorage.setItem("monToken", data.token);
+        localStorage.setItem("token", data.token);
         console.log("Token enregistré avec succès dans le localStorage");
         //Redirection index.html
 
@@ -42,7 +42,23 @@ function validateForm(e) {
       } else {
         console.log("Token manquant dans la réponse");
       }
+
+      // code JS pour la barre du token
+      if (localStorage.getItem("token")) {
+        // Créer mes éléments HTML
+        const barre = document.createElement("div");
+        barre.id = "barre";
+
+        const boutonModifier = document.createElement("button");
+        boutonModifier.id = "btnModifier";
+        boutonModifier.textContent = "Mode édition";
+
+        // Ajouter les éléments
+        document.body.appendChild(barre);
+        document.body.appendChild(boutonModifier);
+      }
     })
+
     .catch((error) => {
       console.error("Erreur:", error);
     });
