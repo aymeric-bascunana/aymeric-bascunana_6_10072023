@@ -108,8 +108,17 @@ function openImageModal() {
   modalTitle.classList.add("titre-galerie");
   modalTitle.textContent = "Galerie photo";
 
-  const imageForm = document.createElement("form");
-  imageForm.id = "imageForm";
+  const worksContainer = document.createElement("ul");
+  worksContainer.classList.add("works-container");
+
+  // Remplir la liste des works depuis le fetch
+  fetchWorks().then((works) => {
+    works.forEach((work) => {
+      const workItem = document.createElement("li");
+      workItem.textContent = work;
+      worksContainer.appendChild(workItem);
+    });
+  });
 
   const updateButton = document.createElement("button");
   updateButton.classList.add("addbutton");
@@ -117,11 +126,11 @@ function openImageModal() {
   updateButton.textContent = "Ajouter une photo";
   updateButton.addEventListener("click", updateImage);
 
-  imageForm.appendChild(updateButton);
+  worksContainer.appendChild(updateButton);
 
   modalContent.appendChild(closeBtn);
   modalContent.appendChild(modalTitle);
-  modalContent.appendChild(imageForm);
+  modalContent.appendChild(worksContainer);
 
   modal.appendChild(modalContent);
 
@@ -140,5 +149,16 @@ function updateImage() {
   closeModal();
 }
 
+// Fonction pour charger la liste des works depuis un serveur
+async function fetchWorks() {
+  try {
+    const response = await fetch("url_de_votre_api");
+    const data = await response.json();
+    return data.works; // Assurez-vous d'adapter la structure de données
+  } catch (error) {
+    console.error("Erreur lors de la récupération des works:", error);
+    return []; // Retourner une liste vide en cas d'erreur
+  }
+}
 const modifyBtn = document.getElementById("modifyBtn");
 modifyBtn.addEventListener("click", openImageModal);
