@@ -14,9 +14,17 @@
     <link rel="stylesheet" href="./assets/style.css" />
 
     <!-- <script src="js/filtre.js" defer></script> -->
+    <script src="js/modal.js" defer></script>
+    <script src="js/admin.js" defer></script>
     <script src="js/index.js" defer></script>
   </head>
   <body>
+    <div id="menuAdmin" class="menuAdmin">
+      <p class="btnEditon">
+        <i class="fa-regular fa-pen-to-square"></i>Mode édition
+      </p>
+      <button class="publier">publier les changements</button>
+    </div>
     <header>
       <h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
       <nav>
@@ -57,7 +65,7 @@
       </section>
       <section id="portfolio">
         <h2>Mes Projets</h2>
-        <button id="modifyBtn" class="modifier">Modifier</button>
+        <button id="modifyBtn" class="btn-modifier">Modifier</button>
 
         <div id="categories" class="categories">
           <button class="active_filter" id="allButton">Tous</button>
@@ -161,5 +169,20 @@
         </ul>
       </nav>
     </footer>
+
+    <div class="modal" id="modalWorks">
+      <div class="modal-content">
+        <span class="close">x</span>
+        <h2 class="titre-galerie">Galerie photo</h2>
+        <ul id="works-container" class="works-container"></ul>
+        <button id="btnModalAddWork" class="addbutton">
+          Ajouter une photo
+        </button>
+      </div>
+    </div>
+
+    <div class="modal" id="modalAddWork">
+      <p>Je suis la modal Add works</p>
+    </div>
   </body>
 </html>

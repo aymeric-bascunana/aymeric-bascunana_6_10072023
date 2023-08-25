@@ -5,6 +5,7 @@ fetch("http://localhost:5678/api/works")
     console.log(works);
     createWorks(works);
     initCategories(works);
+    displayAdminMenu(works);
   });
 
 function createWorks(works) {
@@ -29,6 +30,36 @@ function createWorks(works) {
     galleryDiv.appendChild(figure);
     figure.appendChild(image);
     figure.appendChild(figcaption);
+    // console.log(figureDiv);
+    //console.log(figcaption);
+  });
+}
+
+function createWorksInModal(works) {
+  // Récupérez la div "gallery" dans laquelle vous afficherez les images
+  const worksContainer = document.getElementById("works-container");
+  worksContainer.innerHTML = "";
+
+  console.log("createWorksInModal");
+
+  // Itérez sur chaque objet "work" et ajoutez l'image à la div "gallery"
+  works.forEach((work) => {
+    const li = document.createElement("li");
+
+    const figure = document.createElement("figure");
+    // console.log(figureDiv);
+    const image = document.createElement("img");
+    image.src = work.imageUrl;
+    image.alt = work.title;
+    const figcaption = document.createElement("figcaption");
+    figcaption.textContent = work.title;
+    // console.log(image);
+
+    // Ajoutez appendchild à leurs div
+    figure.appendChild(image);
+    figure.appendChild(figcaption);
+    li.appendChild(figure);
+    worksContainer.appendChild(li);
     // console.log(figureDiv);
     //console.log(figcaption);
   });
@@ -90,75 +121,3 @@ function initCategories(works) {
     createWorks(works);
   });
 }
-
-// Fonction pour créer et afficher le modal
-function openImageModal() {
-  const modal = document.createElement("div");
-  modal.classList.add("modal");
-
-  const modalContent = document.createElement("div");
-  modalContent.classList.add("modal-content");
-
-  const closeBtn = document.createElement("span");
-  closeBtn.classList.add("close");
-  closeBtn.textContent = "×";
-  closeBtn.addEventListener("click", closeModal);
-
-  const modalTitle = document.createElement("h2");
-  modalTitle.classList.add("titre-galerie");
-  modalTitle.textContent = "Galerie photo";
-
-  const worksContainer = document.createElement("ul");
-  worksContainer.classList.add("works-container");
-
-  // Remplir la liste des works depuis le fetch
-  fetchWorks().then((works) => {
-    works.forEach((work) => {
-      const workItem = document.createElement("li");
-      workItem.textContent = work;
-      worksContainer.appendChild(workItem);
-    });
-  });
-
-  const updateButton = document.createElement("button");
-  updateButton.classList.add("addbutton");
-  updateButton.type = "button";
-  updateButton.textContent = "Ajouter une photo";
-  updateButton.addEventListener("click", updateImage);
-
-  worksContainer.appendChild(updateButton);
-
-  modalContent.appendChild(closeBtn);
-  modalContent.appendChild(modalTitle);
-  modalContent.appendChild(worksContainer);
-
-  modal.appendChild(modalContent);
-
-  document.body.appendChild(modal);
-}
-
-// Fonction pour fermer le modal
-function closeModal() {
-  const modal = document.querySelector(".modal");
-  document.body.removeChild(modal);
-}
-
-// Fonction pour mettre à jour l'image
-function updateImage() {
-  const imageUrl = document.getElementById("imageUrl").value;
-  closeModal();
-}
-
-// Fonction pour charger la liste des works depuis un serveur
-async function fetchWorks() {
-  try {
-    const response = await fetch("url_de_votre_api");
-    const data = await response.json();
-    return data.works; // Assurez-vous d'adapter la structure de données
-  } catch (error) {
-    console.error("Erreur lors de la récupération des works:", error);
-    return []; // Retourner une liste vide en cas d'erreur
-  }
-}
-const modifyBtn = document.getElementById("modifyBtn");
-modifyBtn.addEventListener("click", openImageModal);
