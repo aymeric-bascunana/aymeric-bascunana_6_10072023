@@ -8,6 +8,35 @@ function displayAdminMenu(works) {
     modifyBtn.style.display = "block";
     createWorksInModal(works);
     // Suppriemr les catégories
-    // Afficher "logout a la place de login" => puis faire un systemetn pour supprimer le token pour se déconnecter
+    // Masquer les catégories lorsque la barre d'édition est active
+    const categories = document.getElementById("categories");
+    categories.style.display = "none";
+
+    // Mettre à jour le texte du lien "login" en "logout"
+    const loginLink = document.querySelector(".login");
+    loginLink.textContent = "Logout";
+    loginLink.style.display = "none";
+
+    const logoutLink = document.getElementById("logout");
+    logoutLink.style.display = "block";
   }
 }
+
+function openModal(modal) {
+  modal.style.display = "block";
+
+  // Révéler les catégories lorsque la modal est fermée
+  const categories = document.getElementById("categories");
+  categories.style.display = "block";
+}
+// Afficher "logout a la place de login" => puis faire un systemetn pour supprimer le token pour se déconnecter
+// fonction pour gérer la déconnexion
+function logout() {
+  localStorage.removeItem("token");
+
+  // Mettre à jour le texte du lien "logout" en "login"
+  const loginLink = document.querySelector(".login");
+  loginLink.textContent = "Login";
+}
+const logoutLink = document.getElementById("logout");
+logoutLink.style.display = "none";

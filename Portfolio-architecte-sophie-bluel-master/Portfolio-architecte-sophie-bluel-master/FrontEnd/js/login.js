@@ -35,6 +35,7 @@ function validateForm(e) {
       if (data.token) {
         localStorage.setItem("token", data.token);
         console.log("Token enregistré avec succès dans le localStorage");
+
         //Redirection index.html
 
         window.location.href = "index.html";
