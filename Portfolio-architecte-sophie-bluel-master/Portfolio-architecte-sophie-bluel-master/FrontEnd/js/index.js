@@ -49,6 +49,7 @@ function createWorksInModal(works) {
     const figure = document.createElement("figure");
     // console.log(figureDiv);
     const image = document.createElement("img");
+    image.classList.add("img-modal");
     image.src = work.imageUrl;
     image.alt = work.title;
     const figcaption = document.createElement("figcaption");
