@@ -409,15 +409,6 @@ button:hover,
 }
 /* Styles for the form */
 
-button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 .titre-galerie {
   margin: 45px 0px 0px 200px;
   font-size: 30px;
@@ -478,4 +469,51 @@ button[type="submit"] {
 .works-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.fa-solid,
+.fas {
+  font-weight: 900;
+  position: relative;
+  bottom: 105px;
+  right: 20px;
+}
+
+.fa-solid,
+.fas:hover {
+  border: solid black;
+}
+
+.addImage {
+  font-family: inherit;
+  font-weight: 100;
+  color: black;
+  margin: 40px 0px 0px 200px;
+}
+
+#addImageForm {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 60%;
+}
+
+#imageTitle {
+  height: 30px;
+}
+
+#imageUrl {
+  height: 30px;
+}
+
+.btnValide {
+  width: 70%;
+  height: 37px;
+  border-radius: 20px;
+  background-color: darkgray;
+  border: grey;
+  color: white;
+  position: relative;
+  left: 60px;
+  top: 30px;
 }

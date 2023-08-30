@@ -52,17 +52,37 @@ function createWorksInModal(works) {
     image.classList.add("img-modal");
     image.src = work.imageUrl;
     image.alt = work.title;
+
+    // Ajout d'icône de poubelle
+    const deleteIcon = document.createElement("i");
+    deleteIcon.classList.add("fas", "fa-trash", "delete-icon");
+
     const figcaption = document.createElement("figcaption");
     figcaption.textContent = work.title;
     // console.log(image);
 
     // Ajoutez appendchild à leurs div
     figure.appendChild(image);
+    figure.appendChild(deleteIcon);
     figure.appendChild(figcaption);
     li.appendChild(figure);
     worksContainer.appendChild(li);
     // console.log(figureDiv);
     //console.log(figcaption);
+  });
+
+  const deleteIcons = document.querySelectorAll(".delete-icon");
+  deleteIcons.forEach((icon) => {
+    icon.addEventListener("click", () => {
+      // Code pour supprimer l'image
+      // Par exemple : icon.parentElement.parentElement.remove();
+    });
+  });
+  const closeAddWorkModal = document.getElementById("closeAddWorkModal");
+  const modalAddWork = document.getElementById("modalAddWork");
+
+  closeAddWorkModal.addEventListener("click", () => {
+    closeModal(modalAddWork);
   });
 }
 
@@ -81,11 +101,6 @@ function initCategories(works) {
       const button = document.createElement("button");
       button.textContent = category.name;
       button.addEventListener("click", () => {
-        // const activeButton = document.querySelector(".active_filter");
-        // if (activeButton) {
-        //   activeButton.classList.remove("active_filter");
-        // }
-        // button.classList.add("active_filter");
         changeClassActive(button);
         filterWorks(category.name);
       });
