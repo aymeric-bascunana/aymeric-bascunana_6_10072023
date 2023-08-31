@@ -2,14 +2,7 @@ const modifyBtn = document.getElementById("modifyBtn");
 const btnModalAddWork = document.getElementById("btnModalAddWork");
 const modalWorks = document.getElementById("modalWorks");
 const modalAddWork = document.getElementById("modalAddWork");
-
-modifyBtn.addEventListener("click", () => {
-  openModal(modalWorks);
-});
-btnModalAddWork.addEventListener("click", () => {
-  openModal(modalAddWork);
-  closeModal(modalWorks);
-});
+const closeAddWorkModal = document.getElementById("closeAddWorkModal");
 
 function openModal(modal) {
   modal.style.display = "block";
@@ -18,6 +11,23 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.style.display = "none";
 }
+
+modifyBtn.addEventListener("click", () => {
+  openModal(modalWorks);
+});
+
+btnModalAddWork.addEventListener("click", () => {
+  openModal(modalAddWork);
+  closeModal(modalWorks);
+});
+
+closeAddWorkModal.addEventListener("click", () => {
+  closeModal(modalAddWork);
+});
+
+closeWorkModal.addEventListener("click", () => {
+  closeModal(modalWorks);
+});
 
 // Fonction pour créer et afficher le modal
 // function openImageModal() {

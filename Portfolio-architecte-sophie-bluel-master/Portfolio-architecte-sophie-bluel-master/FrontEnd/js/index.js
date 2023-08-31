@@ -56,9 +56,14 @@ function createWorksInModal(works) {
     // Ajout d'icône de poubelle
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fas", "fa-trash", "delete-icon");
+    deleteIcon.addEventListener("click", () => {
+      // Code pour supprimer l'image
+      console.log("delete");
+      // Par exemple : icon.parentElement.parentElement.remove();
+    });
 
     const figcaption = document.createElement("figcaption");
-    figcaption.textContent = work.title;
+    figcaption.textContent = "éditer";
     // console.log(image);
 
     // Ajoutez appendchild à leurs div
@@ -70,20 +75,6 @@ function createWorksInModal(works) {
     // console.log(figureDiv);
     //console.log(figcaption);
   });
-
-  const deleteIcons = document.querySelectorAll(".delete-icon");
-  deleteIcons.forEach((icon) => {
-    icon.addEventListener("click", () => {
-      // Code pour supprimer l'image
-      // Par exemple : icon.parentElement.parentElement.remove();
-    });
-  });
-  const closeAddWorkModal = document.getElementById("closeAddWorkModal");
-  const modalAddWork = document.getElementById("modalAddWork");
-
-  closeAddWorkModal.addEventListener("click", () => {
-    closeModal(modalAddWork);
-  });
 }
 
 function initCategories(works) {
@@ -91,6 +82,7 @@ function initCategories(works) {
     .then((data) => data.json())
     .then((categories) => {
       console.log(categories);
+      categoriesTab = categories;
       createCategoryButtons(categories);
     });
 

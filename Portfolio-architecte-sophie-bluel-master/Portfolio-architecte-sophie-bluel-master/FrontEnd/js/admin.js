@@ -6,6 +6,7 @@ function displayAdminMenu(works) {
     menuAdmin.style.display = "block";
     const modifyBtn = document.getElementById("modifyBtn");
     modifyBtn.style.display = "block";
+
     createWorksInModal(works);
     // Suppriemr les catégories
     // Masquer les catégories lorsque la barre d'édition est active

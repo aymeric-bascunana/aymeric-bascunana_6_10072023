@@ -183,7 +183,7 @@
 
     <div class="modal" id="modalWorks">
       <div class="modal-content">
-        <span class="close">x</span>
+        <span class="close" id="closeWorkModal">x</span>
         <h2 class="titre-galerie">Galerie photo</h2>
         <ul id="works-container" class="works-container"></ul>
         <button id="btnModalAddWork" class="addbutton">
@@ -194,16 +194,21 @@
 
     <div class="modal" id="modalAddWork">
       <div class="modal-content">
-        <span class="close"    id="closeAddWorkModal">x</span>
+        <a class="close" id="closeAddWorkModal">x</a>
         <h2 class="addImage">Ajout photo</h2>
         <form id="addImageForm">
           <label for="imageTitle">Titre</label>
-          <input type="text" id="imageTitle" name="imageTitle" required>
-          
+          <input type="text" id="imageTitle" name="imageTitle" required />
+
           <label for="imageUrl">categorie</label>
-          <input type="url" id="imageUrl" name="imageUrl" required>
-          
+          <!-- <select name="" id="">
+            <option value="ID">Name Cat</option>
+          </select> -->
+          <input type="url" id="imageUrl" name="imageUrl" required />
+
           <button class="btnValide" type="submit">Valider</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
