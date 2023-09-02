@@ -3,6 +3,7 @@ const btnModalAddWork = document.getElementById("btnModalAddWork");
 const modalWorks = document.getElementById("modalWorks");
 const modalAddWork = document.getElementById("modalAddWork");
 const closeAddWorkModal = document.getElementById("closeAddWorkModal");
+const returnToWorks = document.getElementById("returnToWorks");
 
 function openModal(modal) {
   modal.style.display = "block";
@@ -29,6 +30,19 @@ closeWorkModal.addEventListener("click", () => {
   closeModal(modalWorks);
 });
 
+returnToWorks.addEventListener("click", () => {
+  returnToPreviousModal();
+});
+
+function returnToPreviousModal() {
+  // Masquez la modal actuelle
+  const modalAddWork = document.getElementById("modalAddWork");
+  modalAddWork.style.display = "none";
+
+  // Affichez la modal précédente
+  const modalWorks = document.getElementById("modalWorks");
+  modalWorks.style.display = "block";
+}
 // Fonction pour créer et afficher le modal
 // function openImageModal() {
 //   const modal = document.createElement("div");

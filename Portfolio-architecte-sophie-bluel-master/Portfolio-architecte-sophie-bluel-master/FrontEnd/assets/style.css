@@ -388,7 +388,7 @@ button:hover,
 }
 
 .modal-content {
-  background-color: #f4f4f4;
+  background-color: white;
   margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -398,7 +398,7 @@ button:hover,
 }
 
 .close {
-  color: #aaa;
+  color: black;
   float: right;
   font-size: 28px;
   font-weight: bold;
@@ -479,11 +479,13 @@ button:hover,
   right: 20px;
 }
 
-.fa-solid,
-.fas:hover {
-  border: solid black;
+.fas {
+  color: white;
 }
 
+.delete-icon {
+  color: white;
+}
 .addImage {
   font-family: inherit;
   font-weight: 100;
@@ -500,20 +502,64 @@ button:hover,
 
 #imageTitle {
   height: 30px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#imageUrl {
+.imageTitle {
+  margin-bottom: 10px;
+}
+
+#imageCategory {
   height: 30px;
+  border: none;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
+.imageUrl {
+  margin-bottom: 10px;
+}
 .btnValide {
   width: 70%;
   height: 37px;
   border-radius: 20px;
   background-color: darkgray;
-  border: grey;
+  border: lightgray;
   color: white;
   position: relative;
   left: 60px;
   top: 30px;
+}
+
+.return {
+  position: relative;
+  top: 105px;
+  left: 30px;
+  font-size: 30px;
+}
+
+.addImg {
+  background-color: #e8f1f6;
+  padding: 40px;
+  margin: 30px 110px 20px 110px;
+}
+
+.fa-image {
+  position: relative;
+  bottom: 35px;
+  left: 115px;
+  font-size: 60px;
+  color: lightgray;
+}
+
+.btnAdd {
+  position: relative;
+  left: 5px;
+  background-color: lightgray;
+  color: darkblue;
+  border: none;
+}
+
+.sizeMax {
+  margin: 10px 0px 0px 75px;
 }
