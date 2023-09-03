@@ -200,10 +200,22 @@
         <a class="close" id="closeAddWorkModal">x</a>
         <h2 class="addImage">Ajout photo</h2>
 
-        <div class="addImg">
+        <div class="addImg" id="addImageContainer">
           <i class="fa-regular fa-image"></i>
-          <button class="btnAdd" type="submit">+ Ajouter photo</button>
+          <button class="btnAdd" id="btnAddPhoto" type="submit">
+            + Ajouter photo
+          </button>
+          <input
+            type="file"
+            id="imageUpload"
+            accept="image/*"
+            style="display: none"
+          />
           <p class="sizeMax">jpg, png : 4mo max</p>
+        </div>
+
+        <div id="imagePreview" style="display: none">
+          <img id="previewImage" src="" alt="" />
         </div>
 
         <form id="addImageForm">
@@ -215,7 +227,6 @@
             <option value="categorie1">Objets</option>
             <option value="categorie2">Appartements</option>
             <option value="categorie3">Hotels & Restaurants</option>
-            <!-- Ajoutez d'autres options de catégorie au besoin -->
           </select>
 
           <button class="btnValide" type="submit">Valider</button>

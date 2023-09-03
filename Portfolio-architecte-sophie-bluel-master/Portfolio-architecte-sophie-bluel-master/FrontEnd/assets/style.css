@@ -563,3 +563,10 @@ button:hover,
 .sizeMax {
   margin: 10px 0px 0px 75px;
 }
+
+#previewImage {
+  width: 21%;
+  position: relative;
+  bottom: 189px;
+  left: 230px;
+}
