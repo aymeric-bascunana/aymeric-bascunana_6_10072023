@@ -170,6 +170,23 @@ document.getElementById("imageUpload").addEventListener("change", (event) => {
   }
 });
 
+// Sélectionnez l'élément de prévisualisation de l'image
+const imagePreview = document.getElementById("imagePreview");
+
+// Sélectionnez l'élément de la div "addImg"
+const addImgContainer = document.getElementById("addImageContainer");
+
+// Ajoutez un gestionnaire d'événement pour détecter quand l'image de prévisualisation apparaît
+imagePreview.addEventListener("load", function () {
+  // L'image de prévisualisation est chargée, ajoutez la classe pour élargir la div
+  addImgContainer.classList.add("addImg-wide");
+});
+
+// Ajoutez un gestionnaire d'événement pour détecter quand l'image de prévisualisation disparaît
+function removeWideClass() {
+  addImgContainer.classList.remove("addImg-wide");
+}
+
 // Ajoutez un gestionnaire d'événements au bouton "Valider"
 document.getElementById("addImageForm").addEventListener("submit", (event) => {
   event.preventDefault();

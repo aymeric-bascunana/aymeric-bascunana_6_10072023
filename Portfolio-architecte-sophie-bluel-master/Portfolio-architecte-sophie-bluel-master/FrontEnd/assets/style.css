@@ -544,6 +544,9 @@ button:hover,
   margin: 30px 110px 20px 110px;
 }
 
+.addImg-wide {
+  width: 300px;
+}
 .fa-image {
   position: relative;
   bottom: 35px;
