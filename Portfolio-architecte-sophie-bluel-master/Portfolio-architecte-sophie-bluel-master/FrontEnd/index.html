@@ -201,6 +201,9 @@
         <h2 class="addImage">Ajout photo</h2>
 
         <div class="addImg" id="addImageContainer">
+          <div id="imagePreview" style="display: none">
+            <img id="previewImage" src="" alt="" />
+          </div>
           <i class="fa-regular fa-image"></i>
           <button class="btnAdd" id="btnAddPhoto" type="submit">
             + Ajouter photo
@@ -212,10 +215,6 @@
             style="display: none"
           />
           <p class="sizeMax">jpg, png : 4mo max</p>
-        </div>
-
-        <div id="imagePreview" style="display: none">
-          <img id="previewImage" src="" alt="" />
         </div>
 
         <form id="addImageForm">

@@ -23,13 +23,6 @@ function displayAdminMenu(works) {
   }
 }
 
-function openModal(modal) {
-  modal.style.display = "block";
-
-  // Révéler les catégories lorsque la modal est fermée
-  const categories = document.getElementById("categories");
-  categories.style.display = "block";
-}
 // Afficher "logout a la place de login" => puis faire un systemetn pour supprimer le token pour se déconnecter
 // fonction pour gérer la déconnexion
 function logout() {

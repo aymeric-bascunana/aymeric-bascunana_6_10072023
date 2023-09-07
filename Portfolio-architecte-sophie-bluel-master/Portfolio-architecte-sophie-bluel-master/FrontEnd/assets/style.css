@@ -540,7 +540,7 @@ button:hover,
 
 .addImg {
   background-color: #e8f1f6;
-  padding: 40px;
+  height: 200px;
   margin: 30px 110px 20px 110px;
 }
 
@@ -549,15 +549,15 @@ button:hover,
 }
 .fa-image {
   position: relative;
-  bottom: 35px;
-  left: 115px;
+  left: 150px;
   font-size: 60px;
+  top: 10px;
   color: lightgray;
 }
-
 .btnAdd {
   position: relative;
-  left: 5px;
+  left: 40px;
+  top: 50px;
   background-color: lightgray;
   color: darkblue;
   border: none;
@@ -565,11 +565,17 @@ button:hover,
 
 .sizeMax {
   margin: 10px 0px 0px 75px;
+  position: relative;
+  top: 50px;
+  left: 40px;
 }
 
 #previewImage {
-  width: 21%;
-  position: relative;
-  bottom: 189px;
-  left: 230px;
+  height: 200px;
+  object-fit: cover;
+  text-align: center;
+}
+
+#imagePreview {
+  text-align: center;
 }

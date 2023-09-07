@@ -3,6 +3,7 @@ const btnModalAddWork = document.getElementById("btnModalAddWork");
 const modalWorks = document.getElementById("modalWorks");
 const modalAddWork = document.getElementById("modalAddWork");
 const closeAddWorkModal = document.getElementById("closeAddWorkModal");
+const closeWorkModal = document.getElementById("closeWorkModal");
 const returnToWorks = document.getElementById("returnToWorks");
 
 function openModal(modal) {
