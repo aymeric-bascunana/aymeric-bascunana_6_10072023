@@ -207,7 +207,7 @@ document.getElementById("addImageForm").addEventListener("submit", (event) => {
     };
 
     // Ajoutez cet objet "work" à la div "gallery" en appelant la fonction createWorks
-    createWorks([newWork]);
+    addImageToWorks([newWork]);
 
     // Réinitialisez le formulaire
     document.getElementById("imageTitle").value = "";
@@ -218,3 +218,83 @@ document.getElementById("addImageForm").addEventListener("submit", (event) => {
     alert("Veuillez sélectionner une image avant de valider.");
   }
 });
+
+// Sélectionnez les éléments du formulaire
+const formulaire = document.getElementById("addImageForm");
+const titreInput = document.getElementById("imageTitle");
+const categorieSelect = document.getElementById("imageCategory");
+const boutonValide = document.querySelector(".btnValide");
+
+// Fonction pour vérifier si les champs sont remplis
+function verifierChamps() {
+  if (titreInput.value !== "" && categorieSelect.value !== "") {
+    boutonValide.style.backgroundColor = "green"; // Changer la couleur du bouton en vert
+  } else {
+    boutonValide.style.backgroundColor = ""; // Revenir à la couleur par défaut du bouton
+  }
+}
+
+// Ajouter des écouteurs d'événements pour chaque champ
+titreInput.addEventListener("input", verifierChamps);
+categorieSelect.addEventListener("change", verifierChamps);
+
+// Assurez-vous de vérifier l'état initial lorsque la page est chargée
+verifierChamps();
+
+// Sélectionnez le formulaire
+const formulaireData = document.getElementById("addImageForm");
+
+// Écoutez l'événement "submit" du formulaire
+formulaireData.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Créez un nouvel objet FormData à partir du formulaire
+  const formData = new FormData(formulaireData);
+
+  // Par exemple, pour obtenir la valeur du champ "imageTitle"
+  const imageTitleValue = formData.get("imageTitle");
+
+  // Pour obtenir la valeur de la catégorie sélectionnée
+  const imageCategoryValue = formData.get("imageCategory");
+
+  // Exemple de requête POST avec fetch :
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erreur lors de la requête");
+      }
+      return response.json();
+    })
+    .catch((error) => {
+      console.error("Erreur:", error);
+    });
+});
+
+function addImageToWorks(newWork) {
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    body: JSON.stringify(newWork),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erreur lors de la requête");
+      }
+      return response.json();
+    })
+    .then((addedWork) => {
+      // Ajoutez le nouvel élément à la liste existante
+      works.push(addedWork);
+
+      // Mettez à jour la galerie avec la nouvelle liste d'images
+      createWorks(works);
+    })
+    .catch((error) => {
+      console.error("Erreur:", error);
+    });
+}
