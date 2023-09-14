@@ -44,6 +44,151 @@ function returnToPreviousModal() {
   const modalWorks = document.getElementById("modalWorks");
   modalWorks.style.display = "block";
 }
+
+// Ajoutez un gestionnaire d'événements au bouton "Ajouter photo"
+document.getElementById("btnAddPhoto").addEventListener("click", () => {
+  // Ouvrez le champ de téléchargement d'image
+  document.getElementById("imageUpload").click();
+});
+
+// Ajoutez un gestionnaire d'événements au champ de téléchargement d'image
+document.getElementById("imageUpload").addEventListener("change", (event) => {
+  const fileInput = event.target;
+  const imagePreview = document.getElementById("imagePreview");
+  const previewImage = document.getElementById("previewImage");
+  const addImageContainer = document.getElementById("addImageContainer"); // Nouvelle ligne
+
+  if (fileInput.files.length > 0) {
+    // Affichez la prévisualisation de l'image
+    imagePreview.style.display = "block";
+    // Masquez les éléments internes de la div (icône, bouton, paragraphe)
+    const elementsToHide = addImageContainer.querySelectorAll(
+      ".fa-image, .btnAdd, .sizeMax"
+    );
+    elementsToHide.forEach((element) => {
+      element.style.display = "none";
+    });
+    const selectedFile = fileInput.files[0];
+    const imageUrl = URL.createObjectURL(selectedFile);
+    previewImage.src = imageUrl;
+  } else {
+    // Cachez la prévisualisation si aucun fichier n'est sélectionné
+    imagePreview.style.display = "none";
+    // Affichez à nouveau les éléments internes de la div
+    const elementsToShow = addImageContainer.querySelectorAll(
+      ".fa-image, .btnAdd, .sizeMax"
+    );
+    elementsToShow.forEach((element) => {
+      element.style.display = "block";
+    });
+    previewImage.src = "";
+  }
+});
+
+// Sélectionnez l'élément de prévisualisation de l'image
+const imagePreview = document.getElementById("imagePreview");
+
+// Sélectionnez l'élément de la div "addImg"
+const addImgContainer = document.getElementById("addImageContainer");
+
+// Ajoutez un gestionnaire d'événement pour détecter quand l'image de prévisualisation apparaît
+imagePreview.addEventListener("load", function () {
+  // L'image de prévisualisation est chargée, ajoutez la classe pour élargir la div
+  addImgContainer.classList.add("addImg-wide");
+});
+
+// Ajoutez un gestionnaire d'événement pour détecter quand l'image de prévisualisation disparaît
+function removeWideClass() {
+  addImgContainer.classList.remove("addImg-wide");
+}
+
+// Ajoutez un gestionnaire d'événements au bouton "Valider"
+// document.getElementById("addImageForm").addEventListener("submit", (event) => {
+//   event.preventDefault();
+
+//   const imageTitle = document.getElementById("imageTitle").value;
+//   const imageCategory = document.getElementById("imageCategory").value;
+//   const previewImage = document.getElementById("previewImage");
+
+//   // Vérifiez si une image a été sélectionnée
+//   if (previewImage.src) {
+//     // Créez un objet "work" avec les données de l'image
+//     const newWork = {
+//       imageUrl: previewImage.src,
+//       title: imageTitle,
+//       category: {
+//         name: imageCategory,
+//       },
+//     };
+
+//     // Ajoutez cet objet "work" à la div "gallery" en appelant la fonction createWorks
+//     addImageToWorks([newWork]);
+
+//     // Réinitialisez le formulaire
+//     document.getElementById("imageTitle").value = "";
+//     document.getElementById("imageCategory").value = "categorie1";
+//     document.getElementById("imagePreview").style.display = "none";
+//     document.getElementById("previewImage").src = "";
+//   } else {
+//     alert("Veuillez sélectionner une image avant de valider.");
+//   }
+// });
+
+// Sélectionnez les éléments du formulaire
+const formulaire = document.getElementById("addImageForm");
+const imageInput = document.getElementById("imageUpload");
+const titreInput = document.getElementById("imageTitle");
+const categorieSelect = document.getElementById("imageCategory");
+const boutonValide = document.querySelector(".btnValide");
+
+// Fonction pour vérifier si les champs sont remplis
+function verifierChamps() {
+  if (titreInput.value && categorieSelect.value && imageInput.files[0]) {
+    boutonValide.style.backgroundColor = "green"; // Changer la couleur du bouton en vert
+    boutonValide.disabled = false;
+  } else {
+    boutonValide.style.backgroundColor = ""; // Revenir à la couleur par défaut du bouton
+    boutonValide.disabled = true;
+  }
+}
+
+// Ajouter des écouteurs d'événements pour chaque champ
+imageInput.addEventListener("input", verifierChamps);
+titreInput.addEventListener("input", verifierChamps);
+categorieSelect.addEventListener("change", verifierChamps);
+
+// Écoutez l'événement "submit" du formulaire
+formulaire.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  // Créez un nouvel objet FormData à partir du formulaire
+  const formData = new FormData();
+
+  formData.append("title", titreInput.value);
+  formData.append("image", imageInput.files[0]);
+  formData.append("category", categorieSelect.value);
+
+  // Exemple de requête POST avec fetch :
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    body: formData,
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erreur lors de la requête");
+      }
+      return response.json();
+    })
+    .then((response) => {
+      console.log(response);
+      init();
+      //Fuermeture de la modal
+    })
+    .catch((error) => {
+      console.error("Erreur:", error);
+    });
+});
+
 // Fonction pour créer et afficher le modal
 // function openImageModal() {
 //   const modal = document.createElement("div");

@@ -213,6 +213,7 @@
             id="imageUpload"
             accept="image/*"
             style="display: none"
+            required
           />
           <p class="sizeMax">jpg, png : 4mo max</p>
         </div>
@@ -222,13 +223,9 @@
           <input type="text" id="imageTitle" name="imageTitle" required />
 
           <label class="imageUrl" for="imageUrl">categorie</label>
-          <select id="imageCategory" name="imageCategory" required>
-            <option value="categorie1">Objets</option>
-            <option value="categorie2">Appartements</option>
-            <option value="categorie3">Hotels & Restaurants</option>
-          </select>
+          <select id="imageCategory" name="imageCategory" required></select>
 
-          <button class="btnValide" type="submit">Valider</button>
+          <button class="btnValide" type="submit" disabled>Valider</button>
         </form>
       </div>
     </div>

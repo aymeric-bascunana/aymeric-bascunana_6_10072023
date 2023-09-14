@@ -1,4 +1,6 @@
 function displayAdminMenu(works) {
+  const logoutLink = document.getElementById("logout");
+
   // code JS pour la barre du token
   if (localStorage.getItem("token")) {
     console.log("Menu Admin actif");
@@ -18,8 +20,9 @@ function displayAdminMenu(works) {
     loginLink.textContent = "Logout";
     loginLink.style.display = "none";
 
-    const logoutLink = document.getElementById("logout");
     logoutLink.style.display = "block";
+  } else {
+    logoutLink.style.display = "none";
   }
 }
 
@@ -32,5 +35,3 @@ function logout() {
   const loginLink = document.querySelector(".login");
   loginLink.textContent = "Login";
 }
-const logoutLink = document.getElementById("logout");
-logoutLink.style.display = "none";
