@@ -151,28 +151,48 @@ categories.forEach(function (category) {
   option.text = category.label;
   selectElement.appendChild(option);
 });
-// function addImageToWorks(newWork) {
-//   fetch("http://localhost:5678/api/works", {
-//     method: "POST",
-//     body: JSON.stringify(newWork),
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => {
-//       if (!response.ok) {
-//         throw new Error("Erreur lors de la requête");
-//       }
-//       return response.json();
-//     })
-//     .then((addedWork) => {
-//       // Ajoutez le nouvel élément à la liste existante
-//       works.push(addedWork);
 
-//       // Mettez à jour la galerie avec la nouvelle liste d'images
-//       createWorks(works);
-//     })
-//     .catch((error) => {
-//       console.error("Erreur:", error);
-//     });
-// }
+function actualiserContenu() {
+  fetch("http://localhost:5678/api/works")
+    .then((data) => data.json())
+    .then((newWorks) => {
+      console.log(newWorks);
+
+      // Itérez sur chaque nouvelle œuvre
+      newWorks.forEach((newWork) => {
+        // Vérifiez si l'œuvre existe déjà dans la galerie
+        const existingWork = document.querySelector(
+          `[data-id="${newWork.id}"]`
+        );
+
+        if (existingWork) {
+          // Si l'œuvre existe, mettez à jour ses détails (par exemple, son titre ou son image)
+          const image = existingWork.querySelector("img");
+          const figcaption = existingWork.querySelector("figcaption");
+
+          image.src = newWork.imageUrl;
+          image.alt = newWork.title;
+          figcaption.textContent = newWork.title;
+        } else {
+          // Si l'œuvre n'existe pas, créez un nouvel élément pour elle
+          const galleryDiv = document.getElementById("gallery");
+          const figure = document.createElement("figure");
+          figure.dataset.id = newWork.id;
+
+          const image = document.createElement("img");
+          image.src = newWork.imageUrl;
+          image.alt = newWork.title;
+
+          const figcaption = document.createElement("figcaption");
+          figcaption.textContent = newWork.title;
+
+          figure.appendChild(image);
+          figure.appendChild(figcaption);
+          galleryDiv.appendChild(figure);
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la récupération des données :", error);
+    });
+}

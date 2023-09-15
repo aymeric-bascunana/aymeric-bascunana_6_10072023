@@ -181,6 +181,16 @@ formulaire.addEventListener("submit", function (e) {
     })
     .then((response) => {
       console.log(response);
+      // Fermez la modal après avoir ajouté avec succès
+      closeModal(modalAddWork);
+
+      // Réinitialisez le formulaire
+      document.getElementById("imageTitle").value = "";
+      document.getElementById("imageCategory").value = "categorie1";
+      document.getElementById("imagePreview").style.display = "none";
+      document.getElementById("previewImage").src = "";
+
+      // Actualisez la galerie pour afficher la nouvelle œuvre
       init();
       //Fuermeture de la modal
     })
