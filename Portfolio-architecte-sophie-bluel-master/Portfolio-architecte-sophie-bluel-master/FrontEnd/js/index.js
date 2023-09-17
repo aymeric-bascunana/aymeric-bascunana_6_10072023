@@ -196,3 +196,23 @@ function actualiserContenu() {
       console.error("Erreur lors de la récupération des données :", error);
     });
 }
+
+fetch("http://localhost:5678/api/works/1", {
+  method: "GET",
+  headers: {
+    Accept: "application/json",
+  },
+})
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("La requête a échoué");
+    }
+
+    return response.json();
+  })
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((error) => {
+    console.error("Erreur:", error);
+  });
