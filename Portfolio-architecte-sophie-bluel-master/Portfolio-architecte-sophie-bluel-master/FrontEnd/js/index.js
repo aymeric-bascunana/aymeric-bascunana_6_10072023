@@ -198,7 +198,7 @@ function actualiserContenu() {
 }
 
 fetch("http://localhost:5678/api/works/1", {
-  method: "GET",
+  method: "DELETE",
   headers: {
     Accept: "application/json",
   },
