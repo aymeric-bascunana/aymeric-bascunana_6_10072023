@@ -342,7 +342,7 @@ button:hover,
   border: solid 1px #1d6154;
   color: #1d6154;
   position: relative;
-  left: 50px;
+  right: 30px;
 }
 
 .connexion {
@@ -353,7 +353,7 @@ button:hover,
 }
 
 .mdp-oublier {
-  margin: 0px 0px 0px 125px;
+  margin: 0px 0px 0px 65px;
   color: black;
 }
 

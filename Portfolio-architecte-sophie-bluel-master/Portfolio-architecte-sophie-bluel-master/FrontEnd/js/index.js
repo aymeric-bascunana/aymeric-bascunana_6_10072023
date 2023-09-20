@@ -66,6 +66,29 @@ function createWorksInModal(works) {
       figure.parentElement.remove();
 
       //Faire un fetch vers url de suresion en mode delete (+Token)
+      fetch("http://localhost:5678/api/works/1", {
+        method: "DELETE",
+        headers: {
+          Authorization:
+            "Bearer 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiO…jIyfQ.q0tQEG9PDo92TTvdH_JalOlIov99h9V_KrQ-KbBf9t8'", // Remplacez par votre token d'authentification si nécessaire
+          "Content-Type": "application/json", // Le type de contenu de la requête
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            // La suppression s'est bien déroulée, gérer la réponse ici
+            console.log("L'élément a été supprimé avec succès.");
+          } else {
+            // La suppression a échoué, gérer l'erreur ici
+            console.error("La suppression a échoué.");
+          }
+        })
+        .catch((error) => {
+          console.error(
+            "Une erreur s'est produite lors de la suppression:",
+            error
+          );
+        });
     });
 
     const figcaption = document.createElement("figcaption");
@@ -196,23 +219,3 @@ function actualiserContenu() {
       console.error("Erreur lors de la récupération des données :", error);
     });
 }
-
-fetch("http://localhost:5678/api/works/1", {
-  method: "DELETE",
-  headers: {
-    Accept: "application/json",
-  },
-})
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("La requête a échoué");
-    }
-
-    return response.json();
-  })
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((error) => {
-    console.error("Erreur:", error);
-  });
