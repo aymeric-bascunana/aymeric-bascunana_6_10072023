@@ -14,8 +14,6 @@ function validateForm(e) {
   };
 
   const url = "http://localhost:5678/api/users/login";
-  const datatoken = localStorage.getItem("token");
-  console.log(datatoken);
 
   fetch(url, {
     method: "POST",
@@ -36,7 +34,7 @@ function validateForm(e) {
       // createLogin(data);
       //Enregirestre le token dans le localStorage*
       if (data.token) {
-        localStorage.setItem("token", datatoken);
+        localStorage.setItem("token", data.token);
         console.log("Token enregistré avec succès dans le localStorage");
         //Redirection index.html
 

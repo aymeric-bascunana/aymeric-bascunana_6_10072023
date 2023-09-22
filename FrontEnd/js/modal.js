@@ -56,7 +56,7 @@ document.getElementById("imageUpload").addEventListener("change", (event) => {
   const fileInput = event.target;
   const imagePreview = document.getElementById("imagePreview");
   const previewImage = document.getElementById("previewImage");
-  const addImageContainer = document.getElementById("addImageContainer"); // Nouvelle ligne
+  const addImageContainer = document.getElementById("addImageContainer");
 
   if (fileInput.files.length > 0) {
     // Affichez la prévisualisation de l'image

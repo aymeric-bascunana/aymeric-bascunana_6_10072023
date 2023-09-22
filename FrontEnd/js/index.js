@@ -60,17 +60,19 @@ function createWorksInModal(works) {
     // Ajout d'icône de poubelle
     const deleteIcon = document.createElement("i");
     deleteIcon.classList.add("fas", "fa-trash", "delete-icon");
+    deleteIcon.dataset.id = work.id;
     deleteIcon.addEventListener("click", () => {
+      const token = localStorage.getItem("token");
+      console.log(token);
       // Code pour supprimer l'image
-      console.log("delete");
-      figure.parentElement.remove();
+      console.log("delete", work.id);
+      // figure.parentElement.remove();
 
       //Faire un fetch vers url de suresion en mode delete (+Token)
-      fetch("http://localhost:5678/api/works/1", {
+      fetch("http://localhost:5678/api/works/" + work.id, {
         method: "DELETE",
         headers: {
-          Authorization:
-            "Bearer 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiO…jIyfQ.q0tQEG9PDo92TTvdH_JalOlIov99h9V_KrQ-KbBf9t8'", // Remplacez par votre token d'authentification si nécessaire
+          Authorization: `Bearer ${token}`, // Remplacez par votre token d'authentification si nécessaire
           "Content-Type": "application/json", // Le type de contenu de la requête
         },
       })
@@ -78,13 +80,14 @@ function createWorksInModal(works) {
           if (response.ok) {
             // La suppression s'est bien déroulée, gérer la réponse ici
             console.log("L'élément a été supprimé avec succès.");
+            init();
           } else {
             // La suppression a échoué, gérer l'erreur ici
             console.error("La suppression a échoué.");
           }
         })
         .catch((error) => {
-          console.error(
+          console.log(
             "Une erreur s'est produite lors de la suppression:",
             error
           );
@@ -112,6 +115,7 @@ function initCategories(works) {
     .then((categories) => {
       console.log(categories);
       createCategoryButtons(categories);
+      createCategoryOptions(categories);
     });
 
   function createCategoryButtons(categories) {
@@ -126,6 +130,17 @@ function initCategories(works) {
       });
 
       categoryButtonsContainer.appendChild(button);
+    });
+  }
+
+  function createCategoryOptions(categories) {
+    const selectElement = document.getElementById("imageCategory");
+
+    categories.forEach(function (category) {
+      let option = document.createElement("option");
+      option.value = category.id;
+      option.text = category.name;
+      selectElement.appendChild(option);
     });
   }
 
@@ -158,22 +173,22 @@ function initCategories(works) {
   });
 }
 
-var categories = [
-  { value: "1", label: "Objets" },
-  { value: "2", label: "Appartements" },
-  { value: "3", label: "Hotels & restaurants" },
-];
+// var categories = [
+//   { value: "1", label: "Objets" },
+//   { value: "2", label: "Appartements" },
+//   { value: "3", label: "Hotels & restaurants" },
+// ];
 
-// Sélectionnez l'élément select par son ID
-var selectElement = document.getElementById("imageCategory");
+// // Sélectionnez l'élément select par son ID
+// var selectElement = document.getElementById("imageCategory");
 
-// Parcourez le tableau de catégories et ajoutez-les au select
-categories.forEach(function (category) {
-  var option = document.createElement("option");
-  option.value = category.value;
-  option.text = category.label;
-  selectElement.appendChild(option);
-});
+// // Parcourez le tableau de catégories et ajoutez-les au select
+// categories.forEach(function (category) {
+//   var option = document.createElement("option");
+//   option.value = category.value;
+//   option.text = category.label;
+//   selectElement.appendChild(option);
+// });
 
 function actualiserContenu() {
   fetch("http://localhost:5678/api/works")
