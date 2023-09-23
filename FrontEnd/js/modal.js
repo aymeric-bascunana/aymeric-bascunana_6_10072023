@@ -171,13 +171,20 @@ formulaire.addEventListener("submit", function (e) {
   // Exemple de requête POST avec fetch :
   fetch("http://localhost:5678/api/works", {
     method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     body: formData,
   })
     .then((response) => {
-      if (!response.ok) {
-        throw new Error("Erreur lors de la requête");
+      if (response.ok) {
+        // L'ajout s'est bien déroulé, gérer la réponse ici
+        console.log("L'image a été ajoutée avec succès.");
+        init();
+      } else {
+        // L'ajout a échoué, gérer l'erreur ici
+        console.error("L'ajout de l'image a échoué.");
       }
-      return response.json();
     })
     .then((response) => {
       console.log(response);

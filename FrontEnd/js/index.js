@@ -72,8 +72,8 @@ function createWorksInModal(works) {
       fetch("http://localhost:5678/api/works/" + work.id, {
         method: "DELETE",
         headers: {
-          Authorization: `Bearer ${token}`, // Remplacez par votre token d'authentification si nécessaire
-          "Content-Type": "application/json", // Le type de contenu de la requête
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
         },
       })
         .then((response) => {
