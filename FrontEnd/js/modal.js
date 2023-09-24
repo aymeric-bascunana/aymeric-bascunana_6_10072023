@@ -169,12 +169,14 @@ formulaire.addEventListener("submit", function (e) {
   formData.append("category", categorieSelect.value);
 
   // Exemple de requête POST avec fetch :
+  const token = "${token}";
+
   fetch("http://localhost:5678/api/works", {
     method: "POST",
     headers: {
       Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
     },
-    body: formData,
   })
     .then((response) => {
       if (response.ok) {
