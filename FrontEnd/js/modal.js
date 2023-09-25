@@ -168,46 +168,55 @@ formulaire.addEventListener("submit", function (e) {
   formData.append("image", imageInput.files[0]);
   formData.append("category", categorieSelect.value);
 
-  // Exemple de requête POST avec fetch :
-  const token = "${token}";
+  // Ajoutez un gestionnaire d'événements au bouton pour déclencher l'ajout de l'image
+  boutonValide.addEventListener("click", () => {
+    const token = localStorage.getItem("token");
 
-  fetch("http://localhost:5678/api/works", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      if (response.ok) {
-        // L'ajout s'est bien déroulé, gérer la réponse ici
-        console.log("L'image a été ajoutée avec succès.");
+    // Exemple de données à envoyer dans la requête POST
+    const imageData = {
+      title: document.getElementById("imageTitle").value,
+      category: document.getElementById("imageCategory").value,
+      // Ajoutez d'autres données nécessaires ici
+    };
+
+    fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(imageData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // L'ajout s'est bien déroulé, gérer la réponse ici
+          console.log("L'image a été ajoutée avec succès.");
+          init();
+        } else {
+          // L'ajout a échoué, gérer l'erreur ici
+          console.error("L'ajout de l'image a échoué.");
+        }
+      })
+      .then((response) => {
+        console.log(response);
+        // Fermez la modal après avoir ajouté avec succès
+        closeModal(modalAddWork);
+
+        // Réinitialisez le formulaire
+        document.getElementById("imageTitle").value = "";
+        document.getElementById("imageCategory").value = "categorie1";
+        document.getElementById("imagePreview").style.display = "none";
+        document.getElementById("previewImage").src = "";
+
+        // Actualisez la galerie pour afficher la nouvelle œuvre
         init();
-      } else {
-        // L'ajout a échoué, gérer l'erreur ici
-        console.error("L'ajout de l'image a échoué.");
-      }
-    })
-    .then((response) => {
-      console.log(response);
-      // Fermez la modal après avoir ajouté avec succès
-      closeModal(modalAddWork);
-
-      // Réinitialisez le formulaire
-      document.getElementById("imageTitle").value = "";
-      document.getElementById("imageCategory").value = "categorie1";
-      document.getElementById("imagePreview").style.display = "none";
-      document.getElementById("previewImage").src = "";
-
-      // Actualisez la galerie pour afficher la nouvelle œuvre
-      init();
-      //Fuermeture de la modal
-    })
-    .catch((error) => {
-      console.error("Erreur:", error);
-    });
+        //Fuermeture de la modal
+      })
+      .catch((error) => {
+        console.error("Erreur:", error);
+      });
+  });
 });
-
 // Fonction pour créer et afficher le modal
 // function openImageModal() {
 //   const modal = document.createElement("div");
