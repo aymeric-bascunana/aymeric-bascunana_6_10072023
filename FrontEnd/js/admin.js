@@ -10,7 +10,7 @@ function displayAdminMenu(works) {
     modifyBtn.style.display = "block";
 
     createWorksInModal(works);
-    // Suppriemr les catégories
+
     // Masquer les catégories lorsque la barre d'édition est active
     const categories = document.getElementById("categories");
     categories.style.display = "none";
@@ -26,7 +26,6 @@ function displayAdminMenu(works) {
   }
 }
 
-// Afficher "logout a la place de login" => puis faire un systemetn pour supprimer le token pour se déconnecter
 // fonction pour gérer la déconnexion
 function logout() {
   localStorage.removeItem("token");

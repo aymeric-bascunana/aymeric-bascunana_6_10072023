@@ -22,20 +22,17 @@ function createWorks(works) {
   // Itérez sur chaque objet "work" et ajoutez l'image à la div "gallery"
   works.forEach((work) => {
     const figure = document.createElement("figure");
-    // console.log(figureDiv);
+
     const image = document.createElement("img");
     image.src = work.imageUrl;
     image.alt = work.title;
     const figcaption = document.createElement("figcaption");
     figcaption.textContent = work.title;
-    // console.log(image);
 
     // Ajoutez appendchild à leurs div
     galleryDiv.appendChild(figure);
     figure.appendChild(image);
     figure.appendChild(figcaption);
-    // console.log(figureDiv);
-    //console.log(figcaption);
   });
 }
 
@@ -51,7 +48,7 @@ function createWorksInModal(works) {
     const li = document.createElement("li");
 
     const figure = document.createElement("figure");
-    // console.log(figureDiv);
+
     const image = document.createElement("img");
     image.classList.add("img-modal");
     image.src = work.imageUrl;
@@ -66,7 +63,6 @@ function createWorksInModal(works) {
       console.log(token);
       // Code pour supprimer l'image
       console.log("delete", work.id);
-      // figure.parentElement.remove();
 
       //Faire un fetch vers url de suresion en mode delete (+Token)
       fetch("http://localhost:5678/api/works/" + work.id, {
@@ -96,7 +92,6 @@ function createWorksInModal(works) {
 
     const figcaption = document.createElement("figcaption");
     figcaption.textContent = "éditer";
-    // console.log(image);
 
     // Ajoutez appendchild à leurs div
     figure.appendChild(image);
@@ -104,8 +99,6 @@ function createWorksInModal(works) {
     figure.appendChild(figcaption);
     li.appendChild(figure);
     worksContainer.appendChild(li);
-    // console.log(figureDiv);
-    //console.log(figcaption);
   });
 }
 
@@ -163,32 +156,10 @@ function initCategories(works) {
   const allButton = document.getElementById("allButton");
   allButton.addEventListener("click", () => {
     changeClassActive(allButton);
-    // const activeButton = document.querySelector(".active_filter");
-    // if (activeButton) {
-    //   activeButton.classList.remove("active_filter");
-    // }
-    // allButton.classList.add("active_filter");
 
     createWorks(works);
   });
 }
-
-// var categories = [
-//   { value: "1", label: "Objets" },
-//   { value: "2", label: "Appartements" },
-//   { value: "3", label: "Hotels & restaurants" },
-// ];
-
-// // Sélectionnez l'élément select par son ID
-// var selectElement = document.getElementById("imageCategory");
-
-// // Parcourez le tableau de catégories et ajoutez-les au select
-// categories.forEach(function (category) {
-//   var option = document.createElement("option");
-//   option.value = category.value;
-//   option.text = category.label;
-//   selectElement.appendChild(option);
-// });
 
 function actualiserContenu() {
   fetch("http://localhost:5678/api/works")

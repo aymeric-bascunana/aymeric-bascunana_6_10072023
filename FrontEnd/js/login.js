@@ -31,7 +31,7 @@ function validateForm(e) {
 
     .then((data) => {
       console.log(data);
-      // createLogin(data);
+
       //Enregirestre le token dans le localStorage*
       if (data.token) {
         localStorage.setItem("token", data.token);

@@ -102,38 +102,6 @@ function removeWideClass() {
   addImgContainer.classList.remove("addImg-wide");
 }
 
-// Ajoutez un gestionnaire d'événements au bouton "Valider"
-// document.getElementById("addImageForm").addEventListener("submit", (event) => {
-//   event.preventDefault();
-
-//   const imageTitle = document.getElementById("imageTitle").value;
-//   const imageCategory = document.getElementById("imageCategory").value;
-//   const previewImage = document.getElementById("previewImage");
-
-//   // Vérifiez si une image a été sélectionnée
-//   if (previewImage.src) {
-//     // Créez un objet "work" avec les données de l'image
-//     const newWork = {
-//       imageUrl: previewImage.src,
-//       title: imageTitle,
-//       category: {
-//         name: imageCategory,
-//       },
-//     };
-
-//     // Ajoutez cet objet "work" à la div "gallery" en appelant la fonction createWorks
-//     addImageToWorks([newWork]);
-
-//     // Réinitialisez le formulaire
-//     document.getElementById("imageTitle").value = "";
-//     document.getElementById("imageCategory").value = "categorie1";
-//     document.getElementById("imagePreview").style.display = "none";
-//     document.getElementById("previewImage").src = "";
-//   } else {
-//     alert("Veuillez sélectionner une image avant de valider.");
-//   }
-// });
-
 // Sélectionnez les éléments du formulaire
 const formulaire = document.getElementById("addImageForm");
 const imageInput = document.getElementById("imageUpload");
@@ -168,109 +136,44 @@ formulaire.addEventListener("submit", function (e) {
   formData.append("image", imageInput.files[0]);
   formData.append("category", categorieSelect.value);
 
+  console.log(titreInput.value, imageInput.files[0], categorieSelect.value);
+
   // Ajoutez un gestionnaire d'événements au bouton pour déclencher l'ajout de l'image
-  boutonValide.addEventListener("click", () => {
-    const token = localStorage.getItem("token");
 
-    // Exemple de données à envoyer dans la requête POST
-    const imageData = {
-      title: document.getElementById("imageTitle").value,
-      category: document.getElementById("imageCategory").value,
-      // Ajoutez d'autres données nécessaires ici
-    };
+  const token = localStorage.getItem("token");
 
-    fetch("http://localhost:5678/api/works", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(imageData),
+  fetch("http://localhost:5678/api/works", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+    body: formData,
+  })
+    .then((response) => {
+      if (response.ok) {
+        // L'ajout s'est bien déroulé, gérer la réponse ici
+        console.log("L'image a été ajoutée avec succès.");
+        // init();
+      } else {
+        // L'ajout a échoué, gérer l'erreur ici
+        console.error("L'ajout de l'image a échoué.");
+      }
     })
-      .then((response) => {
-        if (response.ok) {
-          // L'ajout s'est bien déroulé, gérer la réponse ici
-          console.log("L'image a été ajoutée avec succès.");
-          init();
-        } else {
-          // L'ajout a échoué, gérer l'erreur ici
-          console.error("L'ajout de l'image a échoué.");
-        }
-      })
-      .then((response) => {
-        console.log(response);
-        // Fermez la modal après avoir ajouté avec succès
-        closeModal(modalAddWork);
+    .then((response) => {
+      console.log(response);
+      // Fermez la modal après avoir ajouté avec succès
+      closeModal(modalAddWork);
 
-        // Réinitialisez le formulaire
-        document.getElementById("imageTitle").value = "";
-        document.getElementById("imageCategory").value = "categorie1";
-        document.getElementById("imagePreview").style.display = "none";
-        document.getElementById("previewImage").src = "";
+      // Réinitialisez le formulaire
+      document.getElementById("imageTitle").value = "";
+      document.getElementById("imageCategory").value = "categorie1";
+      document.getElementById("imagePreview").style.display = "none";
+      document.getElementById("previewImage").src = "";
 
-        // Actualisez la galerie pour afficher la nouvelle œuvre
-        init();
-        //Fuermeture de la modal
-      })
-      .catch((error) => {
-        console.error("Erreur:", error);
-      });
-  });
+      // Actualisez la galerie pour afficher la nouvelle œuvre
+      init();
+    })
+    .catch((error) => {
+      console.error("Erreur:", error);
+    });
 });
-// Fonction pour créer et afficher le modal
-// function openImageModal() {
-//   const modal = document.createElement("div");
-//   modal.classList.add("modal");
-
-//   const modalContent = document.createElement("div");
-//   modalContent.classList.add("modal-content");
-
-//   const closeBtn = document.createElement("span");
-//   closeBtn.classList.add("close");
-//   closeBtn.textContent = "×";
-//   closeBtn.addEventListener("click", closeModal);
-
-//   const modalTitle = document.createElement("h2");
-//   modalTitle.classList.add("titre-galerie");
-//   modalTitle.textContent = "Galerie photo";
-
-//   const worksContainer = document.createElement("ul");
-//   worksContainer.classList.add("works-container");
-
-//   // Remplir la liste des works depuis le fetch
-//   //   fetchWorks().then((works) => {
-//   //     works.forEach((work) => {
-//   //       const workItem = document.createElement("li");
-//   //       workItem.textContent = work;
-//   //       worksContainer.appendChild(workItem);
-//   //     });
-//   //   });
-
-//   const updateButton = document.createElement("button");
-//   updateButton.classList.add("addbutton");
-//   updateButton.type = "button";
-//   updateButton.textContent = "Ajouter une photo";
-//   updateButton.addEventListener("click", updateImage);
-
-//   worksContainer.appendChild(updateButton);
-
-//   modalContent.appendChild(closeBtn);
-//   modalContent.appendChild(modalTitle);
-//   modalContent.appendChild(worksContainer);
-
-//   modal.appendChild(modalContent);
-
-//   document.body.appendChild(modal);
-// }
-
-// Fonction pour fermer le modal
-// function closeModal() {
-//   const modal = document.querySelector(".modal");
-//   document.body.removeChild(modal);
-// }
-
-// Fonction pour mettre à jour l'image
-// function updateImage() {
-//   const imageUrl = document.getElementById("imageUrl").value;
-//   closeModal();
-// }
