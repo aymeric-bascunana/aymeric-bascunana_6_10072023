@@ -457,8 +457,9 @@ button:hover,
 
 .btnEditon {
   position: relative;
-  left: 450px;
+  left: 540px;
   top: 10px;
+  cursor: pointer;
 }
 
 .publier {
@@ -483,6 +484,9 @@ button:hover,
 .works-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  border-bottom: solid gray;
+  padding-bottom: 135px;
+  margin: 0px 25px 0px 25px;
 }
 
 .fa-solid,
@@ -592,4 +596,13 @@ button:hover,
 
 #imagePreview {
   text-align: center;
+}
+
+.footer-login {
+  position: relative;
+  top: 355px;
+}
+
+.delete-icon {
+  bottom: 95px;
 }

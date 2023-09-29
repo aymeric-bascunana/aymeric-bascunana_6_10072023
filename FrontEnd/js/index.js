@@ -46,7 +46,7 @@ function createWorksInModal(works) {
   // Itérez sur chaque objet "work" et ajoutez l'image à la div "gallery"
   works.forEach((work) => {
     const li = document.createElement("li");
-
+    li.style.marginBottom = "20px";
     const figure = document.createElement("figure");
 
     const image = document.createElement("img");
@@ -91,7 +91,6 @@ function createWorksInModal(works) {
     });
 
     const figcaption = document.createElement("figcaption");
-    figcaption.textContent = "éditer";
 
     // Ajoutez appendchild à leurs div
     figure.appendChild(image);
