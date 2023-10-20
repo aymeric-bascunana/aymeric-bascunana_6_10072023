@@ -26,11 +26,23 @@ function displayAdminMenu(works) {
   }
 }
 
-// fonction pour gérer la déconnexion
+const logoutLink = document.getElementById("logout");
+
 function logout() {
+  // Effectuez ici les étapes de déconnexion, par exemple, supprimez le jeton du localStorage
   localStorage.removeItem("token");
 
-  // Mettre à jour le texte du lien "logout" en "login"
-  const loginLink = document.querySelector(".login");
-  loginLink.textContent = "Login";
+  // Redirigez l'utilisateur vers la page de connexion (par exemple, "login.html")
+  window.location.href = "index.html";
+
+  // Mettez à jour le texte du lien "Logout" en "Login"
+  logoutLink.textContent = "Login";
+
+  // Réalisez d'autres actions de déconnexion si nécessaire
 }
+
+// Ajoutez un gestionnaire d'événements "click" au lien "Logout"
+logoutLink.addEventListener("click", (e) => {
+  e.preventDefault(); // Empêchez le lien de se comporter par défaut (navigation)
+  logout(); // Appelez la fonction de déconnexion
+});

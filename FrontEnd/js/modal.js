@@ -102,28 +102,40 @@ function removeWideClass() {
   addImgContainer.classList.remove("addImg-wide");
 }
 
+const formulaire = document.getElementById("addImageForm"); // Déclaration de formulaire
+
 // Sélectionnez les éléments du formulaire
-const formulaire = document.getElementById("addImageForm");
-const imageInput = document.getElementById("imageUpload");
-const titreInput = document.getElementById("imageTitle");
-const categorieSelect = document.getElementById("imageCategory");
-const boutonValide = document.querySelector(".btnValide");
+document.addEventListener("DOMContentLoaded", function () {
+  const titreInput = document.getElementById("imageTitle");
+  const categorieSelect = document.getElementById("imageCategory");
+  const boutonValide = document.querySelector(".btnValide");
+  const messageErreurDiv = document.getElementById("messageErreur");
 
-// Fonction pour vérifier si les champs sont remplis
-function verifierChamps() {
-  if (titreInput.value && categorieSelect.value && imageInput.files[0]) {
-    boutonValide.style.backgroundColor = "green"; // Changer la couleur du bouton en vert
-    boutonValide.disabled = false;
-  } else {
-    boutonValide.style.backgroundColor = ""; // Revenir à la couleur par défaut du bouton
-    boutonValide.disabled = true;
+  function verifierChamps() {
+    const fileInput = document.getElementById("imageUpload");
+    const imageFile = fileInput.files[0];
+
+    if (!titreInput.value || !categorieSelect.value || !imageFile) {
+      boutonValide.style.backgroundColor = "";
+      boutonValide.disabled = true;
+    } else if (!/image\/(jpeg|jpg|png)/.test(imageFile.type)) {
+      messageErreurDiv.textContent =
+        "Le fichier sélectionné n'est pas une image au format jpg, jpeg ou png. Veuillez sélectionner un fichier image valide.";
+      boutonValide.style.backgroundColor = "";
+      boutonValide.disabled = true;
+    } else {
+      messageErreurDiv.textContent = "";
+      boutonValide.style.backgroundColor = "green";
+      boutonValide.disabled = false;
+    }
   }
-}
 
-// Ajouter des écouteurs d'événements pour chaque champ
-imageInput.addEventListener("input", verifierChamps);
-titreInput.addEventListener("input", verifierChamps);
-categorieSelect.addEventListener("change", verifierChamps);
+  document
+    .getElementById("imageUpload")
+    .addEventListener("input", verifierChamps);
+  titreInput.addEventListener("input", verifierChamps);
+  categorieSelect.addEventListener("change", verifierChamps);
+});
 
 // Écoutez l'événement "submit" du formulaire
 formulaire.addEventListener("submit", function (e) {

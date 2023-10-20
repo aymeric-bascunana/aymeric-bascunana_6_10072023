@@ -46,5 +46,8 @@ function validateForm(e) {
 
     .catch((error) => {
       console.error("Erreur:", error);
+      const messageErreurDiv = document.getElementById("messageErreur");
+      messageErreurDiv.innerHTML =
+        "Votre E-mail ou Mot de passe est incorrect.";
     });
 }

@@ -64,7 +64,7 @@ function createWorksInModal(works) {
       // Code pour supprimer l'image
       console.log("delete", work.id);
 
-      //Faire un fetch vers url de suresion en mode delete (+Token)
+      //Faire un fetch vers url de suppresion en mode delete (+Token)
       fetch("http://localhost:5678/api/works/" + work.id, {
         method: "DELETE",
         headers: {
