@@ -373,6 +373,8 @@ button:hover,
 #messageErreur {
   color: red;
   margin: 20px 0px 20px 0px;
+  position: relative;
+  bottom: 135px;
 }
 
 /* Styles for the modal */
