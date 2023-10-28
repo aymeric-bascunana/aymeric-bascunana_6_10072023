@@ -12,6 +12,11 @@ function init() {
 
 init();
 
+function openModal(modal) {
+  modal.style.display = "block";
+  modalIsOpen = true;
+}
+
 function createWorks(works) {
   // Récupérez la div "gallery" dans laquelle vous afficherez les images
   const galleryDiv = document.getElementById("gallery");
@@ -76,7 +81,18 @@ function createWorksInModal(works) {
           if (response.ok) {
             // La suppression s'est bien déroulée, gérer la réponse ici
             console.log("L'élément a été supprimé avec succès.");
-            init();
+
+            // Vérifiez si la modal est ouverte
+            if (modalIsOpen) {
+              // Si la modal est ouverte, mettez à jour la galerie de la modal
+
+              init();
+              // console.log("1");
+            } else {
+              // Si la modal n'est pas ouverte, mettez à jour la galerie principale
+
+              openModal(modalWorks);
+            }
           } else {
             // La suppression a échoué, gérer l'erreur ici
             console.error("La suppression a échoué.");
